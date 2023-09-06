@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
-import com.natwest.primenumber.model.PrimeNumber;
+import com.natwest.primenumber.dto.PrimeNumberJsonResponse;
 
 @Service
 public class PrimeNumberService {
-	public List<PrimeNumber> generatePrimes(int number) {
-        List<PrimeNumber> primes = new ArrayList<>();
+	public PrimeNumberJsonResponse generatePrimes(int number) {
+        List<Integer> primes = new ArrayList<>();
         
         for (int i = 2; i <= number; i++) {
             if (isNumberPrime(i)) {
-                primes.add(new PrimeNumber(i));
+                primes.add(i);
             }
         }
-        
-        return primes;
+        PrimeNumberJsonResponse primeNumberJsonResponse = new PrimeNumberJsonResponse(number, primes);
+        return primeNumberJsonResponse;
     }
 
     private boolean isNumberPrime(int number) {
