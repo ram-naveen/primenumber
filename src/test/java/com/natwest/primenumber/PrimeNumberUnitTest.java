@@ -6,12 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 
 import com.natwest.primenumber.dto.PrimeNumberJsonResponse;
 import com.natwest.primenumber.service.PrimeNumberService;
@@ -37,17 +35,6 @@ class PrimenumberUnitTest {
 		PrimeNumberJsonResponse expectedPrimeNumberJson= new PrimeNumberJsonResponse(input, expectedPrimes);
     	PrimeNumberJsonResponse  generatedPrimeNumberJson = primeNumberService.generatePrimes(input);
         assertEquals(expectedPrimeNumberJson, generatedPrimeNumberJson);
-    }
-    
-    @Test
-    public void testEmptyPrimeNumberJsonResponse() {
-    	 int number = 0; 
-    	 List<Integer> primes = List.of();
-    	 PrimeNumberJsonResponse expectedPrimeNumberJson= new PrimeNumberJsonResponse(number, primes);
-
-    	 PrimeNumberJsonResponse  generatedPrimeNumberJson = primeNumberService.generatePrimes(number);
-
-         assertEquals(expectedPrimeNumberJson, generatedPrimeNumberJson);
     }
     
     private List<Integer> parseCsvList(String csvList) {

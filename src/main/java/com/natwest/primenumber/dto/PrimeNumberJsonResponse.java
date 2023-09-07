@@ -1,7 +1,5 @@
 package com.natwest.primenumber.dto;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;

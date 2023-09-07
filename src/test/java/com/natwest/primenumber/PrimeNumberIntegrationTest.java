@@ -1,15 +1,15 @@
 package com.natwest.primenumber;
 
 import org.junit.jupiter.api.Test;
+import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.ActiveProfiles;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.json.JSONException;
 import org.junit.jupiter.api.Tag;
 
 @SpringBootTest(classes = PrimenumberApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -23,14 +23,15 @@ public class PrimeNumberIntegrationTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void testGeneratePrimesEndpoint() {
-        String url = "http://localhost:" + port + "/primes/10"; // Adjust the URL based on your endpoint
+    public void testGeneratePrimesEndpoint() throws JSONException {
+        String url = "http://localhost:" + port + "/primes/10";
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
 
         assertEquals(200, responseEntity.getStatusCode().value());
         String responseBody = responseEntity.getBody();
         assertNotNull(responseBody);
         System.out.println(responseBody);
-        // Add more assertions as needed to validate the response data
+        String expectedResponseBody = "{\"Initial\":10,\"Primes\":[2,3,5,7]}";
+		JSONAssert.assertEquals(expectedResponseBody, responseBody, true);
     }
 }
