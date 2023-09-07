@@ -14,7 +14,7 @@
 	<name>primenumber</name>
 	<description>Project for NatWest interview</description>
 	<properties>
-		<java.version>20</java.version>
+		<java.version>18</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -30,6 +30,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>primenumber</finalName>
 		<plugins>
 			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
