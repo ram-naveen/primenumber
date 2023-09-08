@@ -8,14 +8,12 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.json.JSONException;
 import org.junit.jupiter.api.Tag;
 
 @SpringBootTest(classes = PrimenumberApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Tag("Integration")
 public class PrimeNumberIntegrationTest {
-
     @LocalServerPort
     private int port;
 
@@ -26,11 +24,11 @@ public class PrimeNumberIntegrationTest {
     public void testGeneratePrimesEndpoint() throws JSONException {
         String url = "http://localhost:" + port + "/primes/10";
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
-
         assertEquals(200, responseEntity.getStatusCode().value());
+        
         String responseBody = responseEntity.getBody();
         assertNotNull(responseBody);
-        System.out.println(responseBody);
+        
         String expectedResponseBody = "{\"Initial\":10,\"Primes\":[2,3,5,7]}";
 		JSONAssert.assertEquals(expectedResponseBody, responseBody, true);
     }

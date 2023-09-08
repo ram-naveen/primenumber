@@ -1,10 +1,8 @@
 package com.natwest.primenumber;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -17,16 +15,15 @@ import com.natwest.primenumber.service.PrimeNumberService;
 @SpringBootTest
 @Tag("Unit")
 class PrimenumberUnitTest {
-	
 	@Autowired
 	private PrimeNumberService primeNumberService;
 
 	@ParameterizedTest
     @CsvSource(value={
-    		"1:[]",
-            "0:[]",
-            "2:[2]",               // Input: 2, Expected: [2]
-            "11:[2,3,5,7,11]",        // Input: 10, Expected: [2, 3, 5, 7]
+            "0:[]",						// Input: 0, Expected: []
+    		"1:[]", 					// Input: 1, Expected: []
+            "2:[2]",               		// Input: 2, Expected: [2]
+            "11:[2,3,5,7,11]",        	// Input: 11, Expected: [2, 3, 5, 7, 11]
             "20:[2,3,5,7,11,13,17,19]", // Input: 20, Expected: [2, 3, 5, 7, 11, 13, 17, 19]
             
     }, delimiter = ':')

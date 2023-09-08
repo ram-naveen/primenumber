@@ -10,7 +10,6 @@ import com.natwest.primenumber.dto.PrimeNumberJsonResponse;
 public class PrimeNumberService {
 	public PrimeNumberJsonResponse generatePrimes(int number) {
         List<Integer> primes = new ArrayList<>();
-        
         for (int i = 2; i <= number; i++) {
             if (isNumberPrime(i)) {
                 primes.add(i);
