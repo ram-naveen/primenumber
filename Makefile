@@ -16,7 +16,7 @@ build-docker-test:
 	
 .PHONY: run-docker build-docker
 
-run-docker: build-docker
+run-docker: stop-docker build-docker
 	docker run -d -p 8080:8080 $(IMAGE_NAME):$(IMAGE_TAG)
 
 build-docker:
@@ -24,5 +24,5 @@ build-docker:
 
 .PHONY: stop-docker
 stop-docker: 
-	docker stop $$(docker ps -a -q --filter ancestor=$(IMAGE_NAME):$(IMAGE_TAG))
+	docker stop $$(docker ps -a -q --filter ancestor=$(IMAGE_NAME):$(IMAGE_TAG)) || true
 
